@@ -1,3 +1,12 @@
 [phases.setup]
-    nixPkgs = ['nodejs', 'python3']
-    aptPkgs = ['build-essential', 'libudev-dev']
+nixPkgs = ['python3']
+aptPkgs = ['build-essential', 'libudev-dev']
+
+[phases.install]
+cmds = ['npm install -g pnpm@10.6.1', 'pnpm install --frozen-lockfile']
+
+[phases.build]
+cmds = ['pnpm run build:backend']
+
+[start]
+cmd = 'pnpm dlx prisma@6.5.0 db push --schema ./libraries/nestjs-libraries/src/database/prisma/schema.prisma --accept-data-loss && node --experimental-require-module apps/backend/dist/apps/backend/src/main.js'
