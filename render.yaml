@@ -26,3 +26,5 @@ services:
         value: http://localhost:3000
       - key: DISABLE_REGISTRATION
         value: "false"
+      - key: NOT_SECURED
+        value: "true"
